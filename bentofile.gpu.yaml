@@ -1,0 +1,18 @@
+service: 'service.py:svc'
+name: multi-tasks-nlp-gpu
+labels:
+  owner: bentoml-team
+  project: multi-tasks-nlp
+include:
+  - '*.py'
+  - '/tests'
+  - 'pyproject.toml'
+  - '/config'
+python:
+  requirements_txt: requirements/tests.txt
+docker:
+  cuda_version: 11.6
+  system_packages:
+    - 'git'
+  env:
+    BENTOML_CONFIG: ./config/default.yaml

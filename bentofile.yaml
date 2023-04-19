@@ -1,0 +1,17 @@
+service: 'service.py:svc'
+name: multi-tasks-nlp
+labels:
+  owner: bentoml-team
+  project: multi-tasks-nlp
+include:
+  - '*.py'
+  - '/tests'
+  - 'pyproject.toml'
+  - '/config'
+python:
+  requirements_txt: requirements/tests.txt
+docker:
+  system_packages:
+    - 'git'
+  env:
+    BENTOML_CONFIG: ./config/default.yaml
