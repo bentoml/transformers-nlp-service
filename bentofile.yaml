@@ -11,6 +11,7 @@ include:
 python:
   requirements_txt: requirements/tests.txt
 docker:
+  dockerfile_template: ./Dockerfile.template
   system_packages:
     - 'git'
   env:
