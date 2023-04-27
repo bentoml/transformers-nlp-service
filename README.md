@@ -8,25 +8,17 @@ working on.
 
 ## Shortcuts
 
- * [Let's see it in action!](#let-s-see-it-in-action-)
-   + [Container](#container)
-   + [Git clone (recommended)](#git-clone--recommended-)
- * [Interacting with the service](#interacting-with-the-service)
-   + [Curl](#curl)
-   + [Python](#python)
-   + [Javascript](#javascript)
- * [Python API](#python-api)
- * [gRPC?](#grpc-)
- * [Seems nice, but how can I customize this?](#seems-nice--but-how-can-i-customize-this-)
-   + [What if I want to add](#what-if-i-want-to-add)
-   + [Where can I add models?](#where-can-i-add-models-)
-   + [Where can I add API logics?](#where-can-i-add-api-logics-)
-   + [Where can I find more docs about Transformers and BentoML?](#where-can-i-find-more-docs-about-transformers-and-bentoml-)
- * [How can I deploy this to production?](#how-can-i-deploy-this-to-production-)
-   + [Container deployment](#container-deployment)
-   + [Serverless](#serverless)
-   + [Kubernetes](#kubernetes)
-   + [Cloud platforms](#cloud-platforms)
+* [Running this project from a container](#container)
+* [Clone me 🤗](#git-clone--recommended-)
+* [Interacting with the service](#interacting-with-the-service)
+* [Sending requests in Python](#python)
+* [How about calling service in JS?](#javascript)
+* [Server, Client and Inference Python API](#i-want-to-use-python-api)
+* [How about gRPC?](#grpc-)
+* [NLP tasks support](#what-if-i-want-to-add-tasks--x--)
+* [Container deployment](#container-deployment)
+* [Serverless with BentoCloud](#serverless)
+* [Kubernetes with Yatai](#kubernetes)
 
 
 ## Let's see it in action!
@@ -52,10 +44,10 @@ You can then quickly try out the service by running the container:
 
 ```bash
 # cpu
-docker run -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/multi-tasks-nlp:cpu
+docker run -p 3000:3000 ghcr.io/bentoml/nlp-multi-task-service:cpu
 
 # gpu
-docker run --gpus all -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/multi-tasks-nlp:gpu
+docker run --gpus all -p 3000:3000 ghcr.io/bentoml/nlp-multi-task-service:gpu
 ```
 
 > Note that to run with GPU, you will need to have [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) setup.
@@ -228,7 +220,7 @@ pytest tests
 
 ## Seems nice, but how can I customize this?
 
-### What if I want to add 
+### What if I want to add tasks *X*?
 This project is designed to be used with different [NLP tasks](https://huggingface.co/tasks) and its corresponding models:
 
 - [Conversational](https://huggingface.co/tasks/conversational): [`facebook/blenderbot-400M-distill`](https://huggingface.co/facebook/blenderbot-400M-distill)
