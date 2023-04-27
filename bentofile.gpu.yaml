@@ -12,6 +12,7 @@ python:
   requirements_txt: requirements/tests.txt
 docker:
   cuda_version: 11.6
+  dockerfile_template: ./Dockerfile.template
   system_packages:
     - 'git'
   env:
