@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 import pydantic
 import asyncio
 import pytest
@@ -11,7 +10,7 @@ if t.TYPE_CHECKING:
 
 
 @pytest.mark.asyncio
-async def test_summarize(mocker: MockerFixture, text: str):
+async def test_summarize(mocker: MockerFixture):
     import service
 
     s_runner = mocker.patch("service.summarizer_runner")
@@ -22,12 +21,12 @@ async def test_summarize(mocker: MockerFixture, text: str):
     )
     s_runner.async_run.return_value = future
 
-    res = await service.summarize(text)
+    res = await service.summarize("asdfasdf")
     assert res == "The quick brown fox jumps over the lazy dog."
 
 
 @pytest.mark.asyncio
-async def test_categorize(mocker: MockerFixture, text: str, categories: list[str]):
+async def test_categorize(mocker: MockerFixture):
     import service
 
     c_runner = mocker.patch("service.categorizer_runner")
@@ -36,12 +35,14 @@ async def test_categorize(mocker: MockerFixture, text: str, categories: list[str
     future.set_result({"labels": ["entertainment"], "scores": [0.5805]})
     c_runner.async_run.return_value = future
 
-    res = await service.categorize({"text": text, "categories": categories})
+    res = await service.categorize(
+        {"text": "asdfasdf", "categories": ["asdfasd", "asdfasd"]}
+    )
     assert isinstance(res, dict) and res == {"entertainment": 0.5805}
 
 
 @pytest.mark.asyncio
-async def test_make_analysis(mocker: MockerFixture, text: str, categories: list[str]):
+async def test_make_analysis(mocker: MockerFixture):
     import service
 
     c_runner = mocker.patch("service.categorizer_runner")
@@ -58,7 +59,9 @@ async def test_make_analysis(mocker: MockerFixture, text: str, categories: list[
     )
     s_runner.async_run.return_value = future
 
-    res = await service.make_analysis({"text": text, "categories": categories})
+    res = await service.make_analysis(
+        {"text": "asdf", "categories": ["asdfad", "asdf"]}
+    )
 
     assert isinstance(res, pydantic.BaseModel) and res.dict() == {
         "summary": "The quick brown fox jumps over the lazy dog.",

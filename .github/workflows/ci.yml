@@ -42,36 +42,16 @@ jobs:
       - name: Type check
         if: ${{ github.event_name == 'pull_request' }}
         run: git diff --name-only --diff-filter=AM "origin/$GITHUB_BASE_REF" -z -- '*.py{,i}' | xargs -0 --no-run-if-empty pyright
-  service-unit-tests:
+  tests:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ['3.8', '3.9', '3.10', '3.11']
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
-    name: python${{ matrix.python-version }}_unit_tests (${{ matrix.os }})
+    name: python${{ matrix.python-version }}_tests (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 50
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # fetch all tags and branches
-      - name: Setup CI
-        uses: ./.github/actions/setup-repo
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Run unit tests
-        run: pytest tests/unit_test.py
-  service-e2e-tests:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11']
-    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
-    name: python${{ matrix.python-version }}_e2e_tests (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 50
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v3
         with:
@@ -87,5 +67,5 @@ jobs:
         if: ${{ matrix.os == 'ubuntu-latest' }}
         id: buildx
         uses: docker/setup-buildx-action@v2
-      - name: Run e2e tests
-        run: pytest tests/e2e_test.py
+      - name: Run tests
+        run: pytest tests -vvv

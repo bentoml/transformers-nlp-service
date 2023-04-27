@@ -229,10 +229,10 @@ This project is designed to be used with different [NLP tasks](https://huggingfa
 - [Sentence Similarity](https://huggingface.co/tasks/sentence-similarity): [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 - [Summarisation](https://huggingface.co/tasks/summarization): [`sshleifer/distilbart-cnn-12-6`](https://huggingface.co/sshleifer/distilbart-cnn-12-6) [included]
 - [Table Question Answering](https://huggingface.co/tasks/table-question-answering): [`google/tapas-base-finetuned-wtq`](https://huggingface.co/google/tapas-base-finetuned-wtq)
-- [Text Classification](https://huggingface.co/tasks/text-classification): [`distilbert-base-uncased-finetuned-sst-2-english`](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english) [included]
+- [Text Classification](https://huggingface.co/tasks/text-classification): [`distilbert-base-uncased-finetuned-sst-2-english`](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
 - [Text Generation](https://huggingface.co/tasks/text-generation): [`bigscience/T0pp`](https://huggingface.co/bigscience/T0pp)
 - [Token Classification](https://huggingface.co/tasks/token-classification): [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER)
-- [Zero-Shot Classification](https://huggingface.co/tasks/zero-shot-classification): [`facebook/bart-large-mnli`](https://huggingface.co/facebook/bart-large-mnli)
+- [Zero-Shot Classification](https://huggingface.co/tasks/zero-shot-classification): [`facebook/bart-large-mnli`](https://huggingface.co/facebook/bart-large-mnli) [included]
 - [Translation](https://huggingface.co/tasks/translation): [`Helsinki-NLP/opus-mt-en-fr`](https://huggingface.co/Helsinki-NLP/opus-mt-en-fr)
 
 ### Where can I add models?
