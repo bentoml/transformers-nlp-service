@@ -52,10 +52,10 @@ You can then quickly try out the service by running the container:
 
 ```bash
 # cpu
-docker run -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/nlp:cpu
+docker run -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/multi-tasks-nlp:cpu
 
 # gpu
-docker run --gpus all -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/nlp:gpu
+docker run --gpus all -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/multi-tasks-nlp:gpu
 ```
 
 > Note that to run with GPU, you will need to have [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) setup.

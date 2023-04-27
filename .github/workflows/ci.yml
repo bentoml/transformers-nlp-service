@@ -8,7 +8,6 @@ on:
 env:
   LINES: 120
   COLUMNS: 120
-  BENTOML_DO_NOT_TRACK: True
   PYTEST_PLUGINS: bentoml.testing.pytest.plugin
   SETUPTOOLS_USE_DISTUTILS: stdlib
   BENTOML_BUNDLE_LOCAL_BUILD: True
