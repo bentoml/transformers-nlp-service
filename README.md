@@ -270,5 +270,7 @@ For Kubernetes, [🦄️ Yatai](https://github.com/bentoml/Yatai) gets the best 
 To deploy on cloud services, such as EC2, Sagemaker or Azure function, checkout [🚀 bentoctl](https://github.com/bentoml/bentoctl)
 
 
+## Community 💬
+
 BentoML has a thriving open source community where thousands of ML/AI practitioners are 
 contributing to the project, helping other users and discussing the future of AI. 👉 [Pop into our Slack community!](https://l.bentoml.com/join-slack)
