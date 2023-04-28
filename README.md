@@ -1,7 +1,12 @@
-# NLP multi-task service
+<div align="center">
+    <h1 align="center">NLP-multi-tasks Service</h1>
+    <br>
+    <strong>A modular, composable, and scalable solution for building NLP services<br></strong>
+    <i>Powered by BentoML 🍱 + HuggingFace 🤗</i>
+    <br>
+</div>
 
-A modular, composable, and scalable solution for building NLP services, powered by BentoML 🍱 + HuggingFace 🤗
-
+<br>
 
 👉 [Pop into our Slack community!](https://l.linklyhq.com/l/ktO8) We're happy to help with any issue you face or even just to meet you and hear what you're
 working on.
@@ -145,9 +150,6 @@ igner Ludovic de Saint Sernin, who is renowned for his eponymous label .",
     healthcare: 0.4245288372039795,
     defence: 0.42102956771850586,
     world: 0.416515976190567,
-    sport: 0.41109055280685425,
-    technology: 0.4091794490814209,
-    infrastructure: 0.4078000485897064
   }
 }
 ```
