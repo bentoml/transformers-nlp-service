@@ -262,7 +262,7 @@ bentoml build -f bentofile.gpu.yaml && bentoml containerize multi-tasks-nlp-gpu 
 
 ### Serverless
 
-Checkout [BentoCloud](https://www.bentoml.com/bento-cloud/), the serverless cloud for AI applications
+Checkout [☁️BentoCloud](https://www.bentoml.com/bento-cloud/), the serverless cloud for AI applications
 
 ### Kubernetes
 
