@@ -8,7 +8,7 @@
 
 <br>
 
-👉 [Pop into our Slack community!](https://l.linklyhq.com/l/ktO8) We're happy to help with any issue you face or even just to meet you and hear what you're
+👉 [Pop into our Slack community!](https://l.bentoml.com/join-slack) We're happy to help with any issue you face or even just to meet you and hear what you're
 working on.
 
 ## Shortcuts
