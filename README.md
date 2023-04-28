@@ -105,11 +105,10 @@ if __name__ == "__main__":
     print("Categories prediction of the article:", client.categorize({'text': SAMPLES, 'categories': CATEGORIES}))
 ```
 
-You can find out more in the [`client.py`](./client.py) file.
+Run `python client.py` to see it in action.
 
-```bash
-python client.py
-```
+> Checkout the [`client.py`](./client.py) file for more details.
+
 
 ### in Javascript
 
@@ -125,13 +124,13 @@ var CATEGORIES = [ 'world', 'politics', 'technology', 'defence', 'parliament' ]
 
 const client = axios.create({
   baseURL: 'http://localhost:3000',
-  timeout: 90000,
+  timeout: 3000,
 })
 
 client
   .post('/make_analysis', {
     text: TEXT,
-    categories: CATEGORIES.map((item) => `${item}`).join(', '),
+    categories: CATEGORIES.join(', '),
   })
   .then(function (r) {
     console.log('Full analysis:', r.data)
@@ -263,12 +262,12 @@ bentoml build -f bentofile.gpu.yaml && bentoml containerize multi-tasks-nlp-gpu 
 
 ### Serverless
 
-Checkout [BentoCloud](https://www.bentoml.com/bento-cloud/)
+Checkout [☁️ BentoCloud](https://www.bentoml.com/bento-cloud/), the serverless cloud for AI applications
 
 ### Kubernetes
 
-You might want to use [🦄️ Yatai](https://github.com/bentoml/Yatai) to deploy on our own cluster
+For Kubernetes, [🦄️ Yatai](https://github.com/bentoml/Yatai) gets the best performance and scalability for your AI workloads
 
 ### Cloud platforms
 
-To deploy this service any cloud platform services, such as EC2, Sagemaker or Azure function, you might want to use [🚀 bentoctl](https://github.com/bentoml/bentoctl).
+To deploy on cloud services, such as EC2, Sagemaker or Azure function, checkout [🚀 bentoctl](https://github.com/bentoml/bentoctl)
