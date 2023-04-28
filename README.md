@@ -124,13 +124,13 @@ var CATEGORIES = [ 'world', 'politics', 'technology', 'defence', 'parliament' ]
 
 const client = axios.create({
   baseURL: 'http://localhost:3000',
-  timeout: 2000,
+  timeout: 3000,
 })
 
 client
   .post('/make_analysis', {
     text: TEXT,
-    categories: CATEGORIES.map((item) => `${item}`).join(', '),
+    categories: CATEGORIES.join(', '),
   })
   .then(function (r) {
     console.log('Full analysis:', r.data)
@@ -262,7 +262,7 @@ bentoml build -f bentofile.gpu.yaml && bentoml containerize multi-tasks-nlp-gpu 
 
 ### Serverless
 
-Checkout [☁️BentoCloud](https://www.bentoml.com/bento-cloud/), the serverless cloud for AI applications
+Checkout [☁️ BentoCloud](https://www.bentoml.com/bento-cloud/), the serverless cloud for AI applications
 
 ### Kubernetes
 
