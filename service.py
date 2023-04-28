@@ -30,7 +30,7 @@ async def summarize(text: str) -> str:
 
 class ClassificationInput(pydantic.BaseModel):
     text: str
-    categories: list[str]
+    categories: t.List[str]
 
     class Config:
         extra = "forbid"
