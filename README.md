@@ -8,9 +8,6 @@
 
 <br>
 
-👉 [Pop into our Slack community!](https://l.bentoml.com/join-slack) We're happy to help with any issue you face or even just to meet you and hear what you're
-working on.
-
 ## Shortcuts
 
 * [Clone me 🤗](#git-clone--recommended-)
@@ -271,3 +268,7 @@ For Kubernetes, [🦄️ Yatai](https://github.com/bentoml/Yatai) gets the best 
 ### Cloud platforms
 
 To deploy on cloud services, such as EC2, Sagemaker or Azure function, checkout [🚀 bentoctl](https://github.com/bentoml/bentoctl)
+
+
+BentoML has a thriving open source community where thousands of ML/AI practitioners are 
+contributing to the project, helping other users and discussing the future of AI. 👉 [Pop into our Slack community!](https://l.bentoml.com/join-slack)
