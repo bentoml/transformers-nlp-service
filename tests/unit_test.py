@@ -36,7 +36,7 @@ async def test_categorize(mocker: MockerFixture):
     c_runner.async_run.return_value = future
 
     res = await service.categorize(
-        {"text": "asdfasdf", "categories": ["asdfasd", "asdfasd"]}
+        service.ClassificationInput(text="asdfasdf", categories=["asdfasd", "asdfasd"])
     )
     assert isinstance(res, dict) and res == {"entertainment": 0.5805}
 
@@ -60,7 +60,7 @@ async def test_make_analysis(mocker: MockerFixture):
     s_runner.async_run.return_value = future
 
     res = await service.make_analysis(
-        {"text": "asdf", "categories": ["asdfad", "asdf"]}
+        service.ClassificationInput(text="asdfasdf", categories=["asdfasd", "asdfasd"])
     )
 
     assert isinstance(res, pydantic.BaseModel) and res.dict() == {
