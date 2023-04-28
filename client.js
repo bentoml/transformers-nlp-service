@@ -43,11 +43,17 @@ function getSummarize(text) {
 }
 
 function getCategorize(text, categories) {
-  return client.post('/categorize', { text: text, categories: categories })
+  return client.post('/categorize', {
+    text: text,
+    categories: categories.map((item) => `${item}`).join(', '),
+  })
 }
 
 function makeAnalysis(text, categories) {
-  return client.post('/make_analysis', { text: text, categories: categories })
+  return client.post('/make_analysis', {
+    text: text,
+    categories: categories.map((item) => `${item}`).join(', '),
+  })
 }
 
 Promise.all([
@@ -59,7 +65,7 @@ Promise.all([
   const categorize = r[1]
   const make_analysis = r[2]
 
-  console.log('Summarize:', summarize)
-  console.log('Categorize:', categorize)
-  console.log('Full analysis:', make_analysis)
+  console.log('Summarize:', summarize.data)
+  console.log('Categorize:', categorize.data)
+  console.log('Full analysis:', make_analysis.data)
 })

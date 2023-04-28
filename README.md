@@ -8,8 +8,8 @@ working on.
 
 ## Shortcuts
 
-* [Running this project from a container](#container)
 * [Clone me 🤗](#git-clone--recommended-)
+* [Running this project from a container](#container)
 * [Interacting with the service](#interacting-with-the-service)
 * [Sending requests in Python](#python)
 * [How about calling service in JS?](#javascript)
@@ -25,7 +25,8 @@ working on.
 
 ### Git clone (recommended)
 
-You can also clone this repo and run the service locally. This requires python3.8+ and pip installed.
+To fully take advantage of this repo, we recommend you to clone it and try out the service locally. 
+This requires Python3.8+ and `pip` installed.
 
 ```bash
 git clone https://github.com/bentoml/NLP-multi-task-service.git && cd NLP-multi-task-service
@@ -39,7 +40,8 @@ You can then open your browser at http://127.0.0.1:3000 to view the Swagger UI t
 
 ### Container
 
-We provide two pre-built container to run on CPU and GPU respectively. This requires any docker container engine, such as docker, podman, ...
+We also provide two pre-built container to run on CPU and GPU respectively. 
+This requires any container engine, such as docker, podman, ...
 You can then quickly try out the service by running the container:
 
 ```bash
@@ -55,7 +57,7 @@ docker run --gpus all -p 3000:3000 ghcr.io/bentoml/nlp-multi-task-service:gpu
 
 ## Interacting with the service
 
-### Curl
+### CURL
 
 You can send requests to serivce with curl. The following example shows how to send a request to the service to summarize a text:
 
@@ -84,17 +86,30 @@ You can also see the OpenAPI UI at http://127.0.0.1:3000
 
 ![OpenAPI UI](./images/openapi.png)
 
-### Python
+### in Python 🐍
 
-We provide a `client.py` file that you can use to send requests to the service:
+To send requests in Python, one can use ``bentoml.client.Client`` to send requests to the service:
+
+```python
+if __name__ == "__main__":
+    import bentoml
+
+    client = bentoml.client.Client.from_url(f"http://{host}:3000")
+
+    print("Summarized text from the article:", client.summarize(SAMPLES))
+    print("Categories prediction of the article:", client.categorize({'text': SAMPLES, 'categories': CATEGORIES}))
+```
+
+You can find out more in the [`client.py`](./client.py) file.
 
 ```bash
 python client.py
 ```
 
-### Javascript
+### in Javascript
 
-You can send requests to serivce with Javascript via `axios`:
+You can also send requests to this service with `axios` in JS. 
+The following example sends a request to make analysis on a given text and categories:
 
 ```javascript
 import axios from 'axios'
@@ -137,32 +152,36 @@ const client = axios.create({
   timeout: 90000,
 })
 
-function getSummarize(text) {
-  return client.post('/summarize', text)
-}
-
-function getCategorize(text, categories) {
-  return client.post('/categorize', { text: text, categories: categories })
-}
-
-function makeAnalysis(text, categories) {
-  return client.post('/make_analysis', { text: text, categories: categories })
-}
-
-Promise.all([
-  getSummarize(TEXT),
-  getCategorize(TEXT, CATEGORIES),
-  makeAnalysis(TEXT, CATEGORIES),
-]).then(function (r) {
-  const summarize = r[0]
-  const categorize = r[1]
-  const make_analysis = r[2]
-
-  console.log('Summarize:', summarize)
-  console.log('Categorize:', categorize)
-  console.log('Full analysis:', make_analysis)
-})
+client
+  .post('/make_analysis', {
+    text: TEXT,
+    categories: CATEGORIES.map((item) => `${item}`).join(', '),
+  })
+  .then(function (r) {
+    console.log('Full analysis:', r.data)
+  })
 ```
+
+Run the `client.js` with `yarn run client` or `npm run client`, and it should yield the following result
+
+```prelog
+Full analysis: {
+  summary: " Actor and model Hunter Schafer wore a barely-there Oscars after party look . The look debuted
+ earlier this month at fashion house Ann Demeulemeester's Fall-Winter 2023 runway . It was designed by des
+igner Ludovic de Saint Sernin, who is renowned for his eponymous label .",
+  categories: {
+    entertainment: 0.4694322943687439,
+    healthcare: 0.4245288372039795,
+    defence: 0.42102956771850586,
+    world: 0.416515976190567,
+    sport: 0.41109055280685425,
+    technology: 0.4091794490814209,
+    infrastructure: 0.4078000485897064
+  }
+}
+```
+
+> Checkout the [`client.js`](./client.js) for more details.
 
 ## I want to use Python API.
 
@@ -221,19 +240,22 @@ pytest tests
 ## Seems nice, but how can I customize this?
 
 ### What if I want to add tasks *X*?
+
 This project is designed to be used with different [NLP tasks](https://huggingface.co/tasks) and its corresponding models:
 
-- [Conversational](https://huggingface.co/tasks/conversational): [`facebook/blenderbot-400M-distill`](https://huggingface.co/facebook/blenderbot-400M-distill)
-- [Fill-Mask](https://huggingface.co/tasks/fill-mask): [`distilroberta-base`](https://huggingface.co/distilroberta-base)
-- [Question Answering](https://huggingface.co/tasks/question-answering): [`deepset/roberta-base-squad2`](https://huggingface.co/deepset/roberta-base-squad2)
-- [Sentence Similarity](https://huggingface.co/tasks/sentence-similarity): [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
-- [Summarisation](https://huggingface.co/tasks/summarization): [`sshleifer/distilbart-cnn-12-6`](https://huggingface.co/sshleifer/distilbart-cnn-12-6) [included]
-- [Table Question Answering](https://huggingface.co/tasks/table-question-answering): [`google/tapas-base-finetuned-wtq`](https://huggingface.co/google/tapas-base-finetuned-wtq)
-- [Text Classification](https://huggingface.co/tasks/text-classification): [`distilbert-base-uncased-finetuned-sst-2-english`](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
-- [Text Generation](https://huggingface.co/tasks/text-generation): [`bigscience/T0pp`](https://huggingface.co/bigscience/T0pp)
-- [Token Classification](https://huggingface.co/tasks/token-classification): [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER)
-- [Zero-Shot Classification](https://huggingface.co/tasks/zero-shot-classification): [`facebook/bart-large-mnli`](https://huggingface.co/facebook/bart-large-mnli) [included]
-- [Translation](https://huggingface.co/tasks/translation): [`Helsinki-NLP/opus-mt-en-fr`](https://huggingface.co/Helsinki-NLP/opus-mt-en-fr)
+| Tasks                                                                               	| Example model                                                                                                               	|
+|-------------------------------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------	|
+| - [Conversational](https://huggingface.co/tasks/conversational)                     	| [`facebook/blenderbot-400M-distill`](https://huggingface.co/facebook/blenderbot-400M-distill)                               	|
+| - [Fill-Mask](https://huggingface.co/tasks/fill-mask)                               	| [`distilroberta-base`](https://huggingface.co/distilroberta-base)                                                           	|
+| - [Question Answering](https://huggingface.co/tasks/question-answering)             	| [`deepset/roberta-base-squad2`](https://huggingface.co/deepset/roberta-base-squad2)                                         	|
+| - [Sentence Similarity](https://huggingface.co/tasks/sentence-similarity)           	| [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)                   	|
+| - [Summarisation](https://huggingface.co/tasks/summarization)                       	| [`sshleifer/distilbart-cnn-12-6`](https://huggingface.co/sshleifer/distilbart-cnn-12-6) [included]                          	|
+| - [Table Question Answering](https://huggingface.co/tasks/table-question-answering) 	| [`google/tapas-base-finetuned-wtq`](https://huggingface.co/google/tapas-base-finetuned-wtq)                                 	|
+| - [Text Classification](https://huggingface.co/tasks/text-classification)           	| [`distilbert-base-uncased-finetuned-sst-2-english`](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english) 	|
+| - [Text Generation](https://huggingface.co/tasks/text-generation)                   	| [`bigscience/T0pp`](https://huggingface.co/bigscience/T0pp)                                                                 	|
+| - [Token Classification](https://huggingface.co/tasks/token-classification)         	| [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER)                                                         	|
+| - [Zero-Shot Classification](https://huggingface.co/tasks/zero-shot-classification) 	| [`facebook/bart-large-mnli`](https://huggingface.co/facebook/bart-large-mnli) [included]                                    	|
+| - [Translation](https://huggingface.co/tasks/translation)                           	| [`Helsinki-NLP/opus-mt-en-fr`](https://huggingface.co/Helsinki-NLP/opus-mt-en-fr)                                           	|
 
 ### Where can I add models?
 

@@ -40,7 +40,7 @@ CATEGORIES = [
     "legal",
 ]
 
-CATEGORICAL_THRESHOLD = 0.5
+CATEGORICAL_THRESHOLD = 0.4
 
 
 def download_model(task: str, model: str) -> bentoml.Model:

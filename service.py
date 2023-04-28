@@ -28,15 +28,20 @@ async def summarize(text: str) -> str:
     return generated[0]["summary_text"]
 
 
+class ClassificationInput(pydantic.BaseModel):
+    text: str
+    categories: list[str]
+
+    class Config:
+        extra = "forbid"
+
+
 @svc.api(
-    input=bentoml.io.JSON.from_sample({"text": TEXT, "categories": CATEGORIES}),
-    output=bentoml.io.JSON(),
+    input=bentoml.io.JSON(pydantic_model=ClassificationInput), output=bentoml.io.JSON()
 )
-async def categorize(
-    input_data: dict[t.Literal["text", "categories"], str | list[str]]
-) -> dict[str, float]:
+async def categorize(input_data: ClassificationInput) -> dict[str, float]:
     predictions = await categorizer_runner.async_run(
-        input_data["text"], input_data["categories"], multi_label=True
+        input_data.text, input_data.categories, multi_label=True
     )
     return {
         c: p
@@ -51,7 +56,9 @@ class GeneralAnalysisOutput(pydantic.BaseModel):
 
 
 @svc.api(
-    input=bentoml.io.JSON.from_sample({"text": TEXT, "categories": CATEGORIES}),
+    input=bentoml.io.JSON.from_sample(
+        ClassificationInput(text=TEXT, categories=CATEGORIES)
+    ),
     output=bentoml.io.JSON.from_sample(
         GeneralAnalysisOutput(
             summary=" Hunter Schafer wore a bias-cut white silk skirt, a single ivory-colored feather and nothing else . The look debuted earlier this month at fashion house Ann Demeulemeester's show in Paris . It was designed by Ludovic de Saint Sernin, the label's creative director since December .",
@@ -62,10 +69,8 @@ class GeneralAnalysisOutput(pydantic.BaseModel):
         )
     ),
 )
-async def make_analysis(
-    input_data: dict[t.Literal["text", "categories"], str | list[str]]
-) -> GeneralAnalysisOutput:
-    text, categories = input_data["text"], input_data["categories"]
+async def make_analysis(input_data: ClassificationInput) -> GeneralAnalysisOutput:
+    text, categories = input_data.text, input_data.categories
     results = [
         res
         for res in await asyncio.gather(
