@@ -1,5 +1,6 @@
 name: push-docker-prebuilt
 on:
+  workflow_dispatch:
   push:
     branches: ['main']
   pull_request:
