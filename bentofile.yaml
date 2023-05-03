@@ -1,8 +1,8 @@
 service: 'service.py:svc'
-name: multi-tasks-nlp
+name: transformer-nlp-service
 labels:
   owner: bentoml-team
-  project: multi-tasks-nlp
+  project: transformer-nlp-service
 include:
   - '*.py'
   - '/tests'
