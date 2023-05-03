@@ -189,13 +189,14 @@ This project is designed to be used with different [NLP tasks](https://huggingfa
 | [Translation](https://huggingface.co/tasks/translation)                           	| [`Helsinki-NLP/opus-mt-en-fr`](https://huggingface.co/Helsinki-NLP/opus-mt-en-fr)                                           	|
 
 ### Where can I add models?
-
 You can add more tasks and models by editing the `download_model.py` file.
 
 ### Where can I add API logics?
-
 Pre/post processing logics can be set in the `service.py` file.
 
+
+### Where can I find more docs about Transformers and BentoML?
+BentoML supports Transformers models out of the box. You can find more details in the [BentoML support](https://docs.bentoml.org/en/latest/frameworks/transformers.html) for [Transformers](https://huggingface.co/docs/transformers/index).
 
 ## 🚀 Deployment / Production 🚀
 Link to the production table in docs.
@@ -203,27 +204,3 @@ Link to the production table in docs.
 ## 👥 Community 👥
 BentoML has a thriving open source community where thousands of ML/AI practitioners are 
 contributing to the project, helping other users and discussing the future of AI. 👉 [Pop into our Slack community!](https://l.bentoml.com/join-slack)
-
-
-### Where can I find more docs about Transformers and BentoML?
-
-BentoML supports Transformers models out of the box. You can find more details in the [BentoML support](https://docs.bentoml.org/en/latest/frameworks/transformers.html) for [Transformers](https://huggingface.co/docs/transformers/index).
-
-
-## How can I deploy this to production?
-
-We have a few options for you to deploy this service to production:
-
-### Container deployment
-
-If you wish to deploy this as a container, you can use the following:
-
-```bash
-bentoml build && bentoml containerize transformers-nlp-service --opt platform=linux/amd64
-```
-
-To build the container with GPU support, you can use the following:
-
-```bash
-bentoml build -f bentofile.gpu.yaml && bentoml containerize transformers-nlp-service-gpu --opt platform=linux/amd64
-```
