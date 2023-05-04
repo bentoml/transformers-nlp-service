@@ -18,7 +18,7 @@ summarizer_runner = get_runner("summarization", summarization_model)
 categorizer_runner = get_runner("zero-shot-classification", classification_model)
 
 svc = bentoml.Service(
-    name="transformer-nlp-service", runners=[summarizer_runner, categorizer_runner]
+    name="transformers-nlp-service", runners=[summarizer_runner, categorizer_runner]
 )
 
 

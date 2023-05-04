@@ -1,14 +1,14 @@
 <div align="center">
-    <h1 align="center">Transformer NLP Service</h1>
+    <h1 align="center">Transformers NLP Service</h1>
     <br>
-    <strong>A modular, composable, and scalable solution for building NLP services with Transformer<br></strong>
+    <strong>A modular, composable, and scalable solution for building NLP services with Transformers<br></strong>
     <i>Powered by BentoML 🍱 + HuggingFace 🤗</i>
     <br>
 </div>
 <br>
 
 ## 📖 Introduction 📖
-- This project showcase how one can serve HuggingFace's transformer models for various NLP with ease.
+- This project showcase how one can serve HuggingFace's transformers models for various NLP with ease.
 - It incorporates BentoML's best practices, from setting up model services and handling pre/post-processing to deployment in production.
 - User can explore the example endpoints such as summarization and categorization via an interactive Swagger UI.
 
@@ -19,7 +19,7 @@ To fully take advantage of this repo, we recommend you to clone it and try out t
 This requires Python3.8+ and `pip` installed.
 
 ```bash
-git clone https://github.com/bentoml/transformer-nlp-service.git && cd transformer-nlp-service
+git clone https://github.com/bentoml/transformers-nlp-service.git && cd transformers-nlp-service
 
 pip install -r requirements/tests.txt
 
@@ -57,7 +57,7 @@ Then, start a server with `bentoml.HTTPServer`:
 import bentoml
 
 # Retrieve Bento from Bento Store
-bento = bentoml.get("transformer-nlp-task")
+bento = bentoml.get("transformers-nlp-service")
 
 server = bentoml.HTTPServer(bento, production=True, port=3000)
 server.start()
