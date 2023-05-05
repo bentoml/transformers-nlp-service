@@ -59,7 +59,7 @@ import bentoml
 # Retrieve Bento from Bento Store
 bento = bentoml.get("transformers-nlp-service")
 
-server = bentoml.HTTPServer(bento, production=True, port=3000)
+server = bentoml.HTTPServer(bento, port=3000)
 server.start()
 ```
 
