@@ -15,7 +15,7 @@
 ## 🏃‍♂️ Running the Service 🏃‍♂️
 To fully take advantage of this repo, we recommend you to clone it and try out the service locally. 
 
-### Bento CLI
+### BentoCLI
 This requires Python3.8+ and `pip` installed.
 
 ```bash
@@ -101,7 +101,7 @@ Celebrity stylist Law Roach on dressing Zendaya and '\''faking it '\''till you m
 A quill strapped across her chest, Schafer let us know she is still writing her narrative — and defining herself on her own terms. There'\''s an entire story contained in those two garments. As De Saint Sernin said in the show notes: "Thirty-six looks, each one a heartfelt sentence."
 The powerful ensemble may become one of Law Roach'\''s last celebrity styling credits. Roach announced over social media on Tuesday that he would be retiring from the industry after 14 years of creating conversation-driving looks for the likes of Zendaya, Bella Hadid, Anya Taylor-Joy, Ariana Grande and Megan Thee Stallion.'
 ```
-### Via BentoML Python Client 🐍
+### Via BentoClient 🐍
 To send requests in Python, one can use ``bentoml.client.Client`` to send requests to the service:
 
 ```python
