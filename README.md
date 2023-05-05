@@ -199,7 +199,7 @@ Pre/post processing logics can be set in the `service.py` file.
 BentoML supports Transformers models out of the box. You can find more details in the [BentoML support](https://docs.bentoml.org/en/latest/frameworks/transformers.html) for [Transformers](https://huggingface.co/docs/transformers/index).
 
 ## 🚀 Bringing it to Production 🚀
-Link to the production table in docs.
+BentoML offers a number of options for deploying and hosting online ML services into production, learn more at [Deploying Bento Docs](https://docs.bentoml.org/en/latest/concepts/deploy.html).
 
 ## 👥 Community 👥
 BentoML has a thriving open source community where thousands of ML/AI practitioners are 
