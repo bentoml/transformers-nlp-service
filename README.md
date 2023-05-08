@@ -60,7 +60,7 @@ import bentoml
 bento = bentoml.get("transformers-nlp-service")
 
 server = bentoml.HTTPServer(bento, port=3000)
-server.start()
+server.start(blocking=True)
 ```
 
 ### gRPC?
