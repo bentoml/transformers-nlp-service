@@ -15,7 +15,7 @@
 ## 🏃‍♂️ Running the Service 🏃‍♂️
 To fully take advantage of this repo, we recommend you to clone it and try out the service locally. 
 
-### BentoCLI
+### BentoML CLI
 This requires Python3.8+ and `pip` installed.
 
 ```bash
