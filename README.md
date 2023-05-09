@@ -76,6 +76,8 @@ To run the container with gRPC, do
 docker run -p 3000:3000 -p 3001:3001 ghcr.io/bentoml/nlp:cpu serve-grpc
 ``` 
 
+To find more information about gRPC with BentoML, refer to [our documentation](https://docs.bentoml.org/en/latest/guides/grpc.html)
+
 ## 🌐 Interacting with the Service 🌐
 The default mode of BentoML's model serving is via HTTP server. Here, we showcase a few examples of how one can interact with the service:
 ### cURL
