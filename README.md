@@ -12,7 +12,9 @@
 - It incorporates BentoML's best practices, from setting up model services and handling pre/post-processing to deployment in production.
 - User can explore the example endpoints such as summarization and categorization via an interactive Swagger UI.
 
-![demo gif](images/demo.gif)
+<div align="center">
+    <img src="https://github.com/bentoml/transformers-nlp-service/blob/main/images/demo.gif" alt="Computer man" >   
+</div>
 
 ## 🏃‍♂️ Running the Service 🏃‍♂️
 To fully take advantage of this repo, we recommend you to clone it and try out the service locally. 
