@@ -16,6 +16,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   images:
+    permissions:
+      contents: write
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+      security-events: write
     strategy:
       fail-fast: false
       matrix:
