@@ -65,7 +65,7 @@ jobs:
         id: meta-pr
         uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175 # ratchet:docker/metadata-action@v4.6.0
         with:
-          images: ghcr.io/bentoml/${{ github.repository }}
+          images: ghcr.io/${{ env.GITHUB_REPOSITORY }}
           tags: |
             type=raw,value=sha-${{ env.GITHUB_SHA_SHORT }}-${{ matrix.imgtype }}
       - name: Extract metadata tags and labels for main, release or tag
@@ -74,7 +74,7 @@ jobs:
         uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175 # ratchet:docker/metadata-action@v4.6.0
         with:
           flavor: latest=auto
-          images: ghcr.io/bentoml/${{ github.repository }}
+          images: ghcr.io/${{ env.GITHUB_REPOSITORY }}
           tags: |
             type=semver,pattern={{version}}-${{ matrix.imgtype }}
             type=semver,pattern={{major}}.{{minor}}-${{ matrix.imgtype }}
@@ -113,7 +113,7 @@ jobs:
         uses: aquasecurity/trivy-action@559eb1224e654a86c844a795e6702a0742c60c72 # ratchet:aquasecurity/trivy-action@master
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          image-ref: 'ghcr.io/bentoml/${{ github.repository }}:sha-${{ env.GITHUB_SHA_SHORT }}'
+          image-ref: 'ghcr.io/${{ env.GITHUB_REPOSITORY }}:sha-${{ env.GITHUB_SHA_SHORT }}'
           format: 'github'
           output: 'dependency-results.sbom.json'
           github-pat: ${{ secrets.UI_GITHUB_TOKEN }}
@@ -122,7 +122,7 @@ jobs:
         uses: aquasecurity/trivy-action@559eb1224e654a86c844a795e6702a0742c60c72 # ratchet:aquasecurity/trivy-action@master
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          image-ref: 'ghcr.io/bentoml/${{ github.repository }}:sha-${{ env.GITHUB_SHA_SHORT }}'
+          image-ref: 'ghcr.io/${{ env.GITHUB_REPOSITORY }}:sha-${{ env.GITHUB_SHA_SHORT }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL'

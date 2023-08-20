@@ -31,8 +31,6 @@ jobs:
         with:
           bentoml-version: 'main'
           python-version: '3.11'
-      - name: Setup CI
-        uses: ./.github/actions/setup-repo
       - name: Install dependencies
         run: pip install black isort ruff
       - name: Install pyright
@@ -64,6 +62,8 @@ jobs:
         with:
           bentoml-version: 'main'
           python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: pip install -r requirements/tests.txt
       - name: Set up QEMU
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # ratchet:docker/setup-qemu-action@v2
         if: ${{ matrix.os == 'ubuntu-latest' }}
